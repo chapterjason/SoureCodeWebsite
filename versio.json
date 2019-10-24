@@ -11,15 +11,8 @@
         }
     ],
     "workflow": {
-        "places": [
-            "BETA"
-        ],
         "transitions": {
             "MASTER": [
-                "BETA"
-            ],
-            "BETA": [
-                "BETA",
                 "RELEASE"
             ]
         }
