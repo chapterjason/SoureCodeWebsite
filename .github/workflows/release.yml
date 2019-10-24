@@ -25,6 +25,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: REF
           script: |
+            cd httpdocs
             git fetch
             git checkout $REF
             git pull
