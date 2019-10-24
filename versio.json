@@ -1,5 +1,15 @@
 {
     "version": "0.1.0-DEV",
+    "strategies": [
+        {
+            "type": "expression",
+            "options": {
+                "pattern": ".env",
+                "expression": "APP_VERSION={{SEMVER}}",
+                "replacement": "APP_VERSION={{VERSION}}"
+            }
+        }
+    ],
     "workflow": {
         "places": [
             "BETA"
