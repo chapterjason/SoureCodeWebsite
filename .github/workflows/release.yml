@@ -1,0 +1,33 @@
+on:
+  - push
+#  push:
+#    tags:
+#      - 'v*'
+
+name: Deploy Release
+
+jobs:
+  build:
+    name: Deploy Release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Update
+        uses: appleboy/ssh-action@master
+        env:
+          REF: ${{ github.ref }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          envs: REF
+          script: |
+            git fetch
+            git checkout $REF
+            git pull
+            composer install --no-dev --optimize-autoloader --prefer-dist --no-progress --no-suggest
+            php bin/console cache:clear
+            php bin/console cache:warmup
