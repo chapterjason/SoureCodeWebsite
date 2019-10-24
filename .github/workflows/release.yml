@@ -11,10 +11,7 @@ jobs:
     name: Deploy Release
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-
-      - name: Update
+      - name: Deploy
         uses: appleboy/ssh-action@master
         env:
           REF: ${{ github.ref }}
@@ -25,6 +22,8 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: REF
           script: |
+            REF=${REF#refs/heads/};
+            REF=${REF#refs/tags/};
             cd httpdocs
             git fetch
             git checkout $REF
