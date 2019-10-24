@@ -1,0 +1,17 @@
+{
+    "version": "0.1.0-DEV",
+    "workflow": {
+        "places": [
+            "BETA"
+        ],
+        "transitions": {
+            "MASTER": [
+                "BETA"
+            ],
+            "BETA": [
+                "BETA",
+                "RELEASE"
+            ]
+        }
+    }
+}
