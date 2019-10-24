@@ -25,9 +25,9 @@ jobs:
             REF=${REF#refs/heads/};
             REF=${REF#refs/tags/};
             cd httpdocs
-            git fetch
-            git checkout $REF
-            git pull
+            git fetch -q
+            git checkout $REF -q
+            git pull -q
             composer install --no-dev --optimize-autoloader --prefer-dist --no-progress --no-suggest
             php bin/console cache:clear
             php bin/console cache:warmup
